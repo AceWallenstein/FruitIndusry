@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pinnoocle.fruitindustryoptimization.R;
@@ -44,14 +45,14 @@ public class AdoptAdapter extends RecyclerView.Adapter<AdoptAdapter.ViewHolder> 
         tag.clear();
         tag.add("企业专区");
         holder.tv_title.setContentAndTag("认养一颗新疆灰枣,拥有命名权，每年送10斤红枣零食", tag);
-//        holder.ll_class.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (mOnItemClickListener != null) {
-//                    mOnItemClickListener.onItemClick(position);
-//                }
-//            }
-//        });
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -74,10 +75,12 @@ public class AdoptAdapter extends RecyclerView.Adapter<AdoptAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TagTextView tv_title;
+        private final CardView cardView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv_title = (TagTextView) itemView.findViewById(R.id.tv_title);
+            cardView = (CardView) itemView.findViewById(R.id.cardView);
         }
     }
 }

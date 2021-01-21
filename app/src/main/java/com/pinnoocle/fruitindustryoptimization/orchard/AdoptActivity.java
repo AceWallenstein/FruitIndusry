@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pinnoocle.fruitindustryoptimization.R;
 import com.pinnoocle.fruitindustryoptimization.adapter.AdoptAdapter;
 import com.pinnoocle.fruitindustryoptimization.common.BaseActivity;
+import com.pinnoocle.fruitindustryoptimization.utils.ActivityUtils;
 import com.pinnoocle.fruitindustryoptimization.widget.CommItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -18,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AdoptActivity extends BaseActivity {
+public class AdoptActivity extends BaseActivity implements AdoptAdapter.OnItemClickListener {
 
     @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
@@ -44,10 +45,17 @@ public class AdoptActivity extends BaseActivity {
         recycleView.addItemDecoration(new CommItemDecoration(this, DividerItemDecoration.VERTICAL, getResources().getColor(R.color.transparent), 30));
         adoptAdapter = new AdoptAdapter(this);
         recycleView.setAdapter(adoptAdapter);
+
+        adoptAdapter.setOnItemClickListener(this);
     }
 
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        ActivityUtils.startActivity(this, AdoptDetailsActivity.class);
     }
 }
