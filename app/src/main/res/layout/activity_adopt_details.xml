@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,18 +28,18 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_adopt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/light_red"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="立即领养"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_adopt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_red"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="立即领养"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -48,41 +49,110 @@
         android:layout_below="@id/rl_title"
         android:overScrollMode="never">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <FrameLayout
-            android:id="@+id/fl_banner"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="376dp" />
-        <TextView
-            android:id="@+id/tv_1"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:textColor="@color/red"
-            android:textSize="16sp"/>
-        <TextView
-            android:textColor="@color/red"
-            android:layout_marginStart="10dp"
-            android:id="@+id/tv_2"
-            android:layout_toEndOf="@id/tv_1"
-            android:layout_alignParentBottom="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"
-            android:textSize="16sp"/>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="376dp">
+
+                <FrameLayout
+                    android:id="@+id/fl_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="376dp" />
+
+                <com.pinnoocle.fruitindustryoptimization.widget.SwitchView
+                    android:id="@+id/switchView"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    app:bgColor="#CCFFFFFF"
+                    app:leftColor="#00A23B"
+                    app:rightColor="#00A23B"
+                    app:setChecked="false"
+                    app:textLeft="图片"
+                    app:textLeftClickColor="@color/white"
+                    app:textLeftColor="#111111"
+                    app:textRight="监控"
+                    app:textRightClickColor="@color/white"
+                    app:textRightColor="#111111"
+                    app:time="500" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="￥"
+                    android:textColor="#DA251D"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tv_dollar"
+                    android:text="1.90"
+                    android:textColor="#DA251D"
+                    android:textSize="28sp" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="14dp"
+                    android:text="蜀山A地块"
+                    android:textColor="@color/grey"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/tv_address"
+                    android:src="@mipmap/map" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="认养一颗新疆灰枣，每年送10斤红枣零食红枣零食..."
+                android:textColor="#111111"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="新疆兵团大地有机灰枣，新疆兵团大地有机灰枣有机灰枣，有机灰枣！"
+                android:textColor="#A5A5A5"
+                android:textSize="13sp" />
 
 
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="#F6F6F6"
+                android:layout_marginTop="10dp"
+                android:layout_height="10dp"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </RelativeLayout>

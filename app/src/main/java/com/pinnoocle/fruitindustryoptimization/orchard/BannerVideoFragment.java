@@ -24,6 +24,12 @@ public class BannerVideoFragment extends BaseFragment {
         initJzVideo();
     }
 
+    @Override
+    public void onResume() {
+        jzVideo.startVideo();
+        super.onResume();
+    }
+
     private void initJzVideo() {
         jzVideo.setUp("http://1251316161.vod2.myqcloud.com/5f6ddb64vodsh1251316161/ece2c7df5285890812999168943/mKHguCyn6gIA.mp4"
                 , "饺子闭眼睛");
@@ -44,7 +50,7 @@ public class BannerVideoFragment extends BaseFragment {
 
     public void onBackPressed() {
         if (jzVideo.backPress()) {
-            return ;
+            return;
         }
     }
 }
