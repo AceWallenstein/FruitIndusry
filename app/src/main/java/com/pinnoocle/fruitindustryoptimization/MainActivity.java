@@ -26,6 +26,7 @@ import com.pinnoocle.fruitindustryoptimization.mine.MineFragment;
 import com.pinnoocle.fruitindustryoptimization.orchard.OrchardFragment;
 import com.pinnoocle.fruitindustryoptimization.shoppingcart.ShoppingCartFragment;
 import com.pinnoocle.fruitindustryoptimization.utils.DensityUtil;
+import com.pinnoocle.fruitindustryoptimization.utils.StatusBarUtil;
 import com.pinnoocle.fruitindustryoptimization.widget.NoScrollViewPager;
 
 import java.lang.reflect.Field;
@@ -46,7 +47,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initTransparent();
+        initRed();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -91,9 +92,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 )
                 .setFirstSelectedPosition(0)
                 .initialise();
-        setBottomNavigationItem(4,22);
+        setBottomNavigationItem(4, 22);
 
     }
+
     private void setBottomNavigationItem(int space, int imgLen) {
         float contentLen = 36;
         Class barClass = bottomNavigationBar.getClass();
@@ -169,13 +171,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     public void onPageSelected(int position) {
         if (position == 0) {
             initRed();
+        } else {
+            initTransparent();
         }
-//        } else if (position == 1) {
-//            initTransparent();
-//        } else {
-//            initJuice();
-//        }
-//        StatusBarUtil.StatusBarLightMode(this);
+        StatusBarUtil.StatusBarLightMode(this);
         bottomNavigationBar.selectTab(position);
     }
 
