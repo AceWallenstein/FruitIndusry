@@ -92,6 +92,9 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         Glide.with(getContext())
                 .load("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640")
                 .into(jzVideo.posterImageView);
+        jzVideo.fullscreenButton.setOnClickListener(v -> {
+            ActivityUtils.startActivity(getContext(),VideoActivity.class);
+        });
 
     }
 

@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.SearchActivity" />
+        <activity android:name=".home.VideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            />
     </application>
 
 </manifest>
