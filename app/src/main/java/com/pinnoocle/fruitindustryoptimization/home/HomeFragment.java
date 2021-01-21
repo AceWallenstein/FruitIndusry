@@ -5,16 +5,19 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.core.widget.NestedScrollView;
 
+import com.bumptech.glide.Glide;
 import com.pinnoocle.fruitindustryoptimization.R;
 import com.pinnoocle.fruitindustryoptimization.common.BaseFragment;
 import com.pinnoocle.fruitindustryoptimization.utils.ActivityUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -24,6 +27,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 
 public class HomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     @BindView(R.id.rl_title)
@@ -40,6 +45,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     NestedScrollView scrollview;
     @BindView(R.id.refresh)
     SmartRefreshLayout refresh;
+    @BindView(R.id.marqueeView)
+    MarqueeView marqueeView;
+    @BindView(R.id.ll_marqueeView)
+    LinearLayout llMarqueeView;
+    @BindView(R.id.jz_video)
+    JzvdStd jzVideo;
 
     private ArrayList<Map<String, Object>> data_list;
     private SimpleAdapter sim_adapter;
@@ -57,7 +68,10 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     protected void initView() {
         grid();
         gridView.setOnItemClickListener(this);
+        initJzVideo();
     }
+
+
 
     private void grid() {
         data_list = new ArrayList<Map<String, Object>>();
@@ -70,6 +84,14 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         //配置适配器
         gridView.setAdapter(sim_adapter);
         gridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+
+    }
+    private void initJzVideo() {
+        jzVideo.setUp("http://1251316161.vod2.myqcloud.com/5f6ddb64vodsh1251316161/ece2c7df5285890812999168943/mKHguCyn6gIA.mp4"
+                , "饺子闭眼睛");
+        Glide.with(getContext())
+                .load("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640")
+                .into(jzVideo.posterImageView);
 
     }
 
@@ -100,6 +122,18 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     @OnClick(R.id.ed_search)
     public void onViewClicked() {
-        ActivityUtils.startActivity(getContext(),SearchActivity.class);
+        ActivityUtils.startActivity(getContext(), SearchActivity.class);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
+
+    public void onBackPressed() {
+        if (jzVideo.backPress()) {
+            return ;
+        }
     }
 }

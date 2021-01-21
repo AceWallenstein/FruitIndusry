@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="商城"
+            android:text="兵团优选"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </RelativeLayout>
@@ -57,7 +57,7 @@
                     android:background="@drawable/bg_search"
                     android:drawableLeft="@mipmap/search"
                     android:drawablePadding="10dp"
-                    android:hint="输入关键字搜索"
+                    android:hint="搜索"
                     android:imeOptions="actionSearch"
                     android:padding="8dp"
                     android:singleLine="true"
@@ -75,8 +75,6 @@
                 android:overScrollMode="never">
 
                 <LinearLayout
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,10 +95,40 @@
                         android:layout_marginEnd="15dp"
                         android:gravity="center"
                         android:numColumns="4" />
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/ll_marqueeView"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/get_tree"/>
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                          />
+
+                        <com.sunfusheng.marqueeview.MarqueeView
+                            android:id="@+id/marqueeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_weight="1"
+                            android:text="用户月公告"
+                            app:mvAnimDuration="1000"
+                            app:mvSingleLine="true"
+                            app:mvTextColor="#333333"
+                            app:mvTextSize="14sp" />
+                    </LinearLayout>
+                    <cn.jzvd.JzvdStd
+                        android:id="@+id/jz_video"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

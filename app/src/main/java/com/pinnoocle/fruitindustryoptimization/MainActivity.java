@@ -42,6 +42,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @BindView(R.id.bottom_navigation_bar)
     BottomNavigationBar bottomNavigationBar;
     private List<Fragment> mList;
+    private HomeFragment homeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     private void initViewPager() {
         mList = new ArrayList<>();
-        mList.add(new HomeFragment());
+        homeFragment = new HomeFragment();
+        mList.add(homeFragment);
         mList.add(new OrchardFragment());
         mList.add(new ShoppingCartFragment());
         mList.add(new MineFragment());
@@ -182,6 +184,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     }
 
+
     /**
      * 手机返回键监听
      */
@@ -189,6 +192,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onBackPressed() {
+//        if(homeFragment!=null){
+//           homeFragment.onBackPressed();
+//        }
         long secondTime = System.currentTimeMillis();
         if (secondTime - firstTime > 800) { // 两次点击间隔大于800毫秒，不退出
             ToastUtils.showToast("再按一次退出程序");
