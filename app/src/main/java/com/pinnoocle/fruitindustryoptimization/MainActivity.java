@@ -191,9 +191,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onBackPressed() {
-//        if(homeFragment!=null){
-//           homeFragment.onBackPressed();
-//        }
+        if(homeFragment!=null){
+           homeFragment.onBackPressed();
+        }
         long secondTime = System.currentTimeMillis();
         if (secondTime - firstTime > 800) { // 两次点击间隔大于800毫秒，不退出
             ToastUtils.showToast("再按一次退出程序");
