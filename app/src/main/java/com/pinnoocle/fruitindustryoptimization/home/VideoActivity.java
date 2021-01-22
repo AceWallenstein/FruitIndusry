@@ -8,6 +8,7 @@ import com.pinnoocle.fruitindustryoptimization.common.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
@@ -31,7 +32,7 @@ public class VideoActivity extends BaseActivity {
             getSupportActionBar().hide();
         }
         jzVideo.setUp("http://1251316161.vod2.myqcloud.com/5f6ddb64vodsh1251316161/ece2c7df5285890812999168943/mKHguCyn6gIA.mp4"
-                , "饺子闭眼睛",JzvdStd.SCREEN_FULLSCREEN);
+                , "饺子闭眼睛", JzvdStd.SCREEN_FULLSCREEN);
         jzVideo.backButton.setOnClickListener(v -> {
             finish();
         });
@@ -44,6 +45,7 @@ public class VideoActivity extends BaseActivity {
         }
         super.onBackPressed();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
