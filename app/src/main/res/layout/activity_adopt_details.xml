@@ -35,11 +35,11 @@
         android:layout_alignParentBottom="true"
         android:background="@color/light_red"
         android:gravity="center"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         android:text="立即领养"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="15sp" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -81,6 +81,14 @@
                     app:textRightClickColor="@color/white"
                     app:textRightColor="#111111"
                     app:time="500" />
+
+                <com.pinnoocle.fruitindustryoptimization.widget.VerticalMarqueeLayout
+                    android:id="@+id/marquee_root"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/bg_black_15" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -144,12 +152,38 @@
                 android:textColor="#A5A5A5"
                 android:textSize="13sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:background="#F6F6F6" />
+
+            <com.androidkun.xtablayout.XTabLayout
+                android:id="@+id/xTablayout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                app:xTabIndicatorColor="#00A23B"
+                app:xTabIndicatorHeight="2dp"
+                app:xTabIndicatorWidth="24dp"
+                app:xTabMode="fixed"
+                app:xTabSelectedTextColor="#00A23B"
+                app:xTabSelectedTextSize="16sp"
+                app:xTabTextColor="#A5A5A5"
+                app:xTabTextSelectedBold="true"
+                app:xTabTextSize="16sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:background="#F6F6F6"
-                android:layout_marginTop="10dp"
-                android:layout_height="10dp"/>
+                android:layout_height="0.5dp"
+                android:background="#ECECEC" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </RelativeLayout>
