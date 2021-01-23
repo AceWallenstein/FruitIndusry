@@ -169,7 +169,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onPageSelected(int position) {
-        if (position == 0) {
+        if (position == 0 || position == 3) {
             initRed();
         } else {
             initTransparent();
@@ -191,8 +191,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onBackPressed() {
-        if(homeFragment!=null){
-           homeFragment.onBackPressed();
+        if (homeFragment != null) {
+            homeFragment.onBackPressed();
         }
         long secondTime = System.currentTimeMillis();
         if (secondTime - firstTime > 800) { // 两次点击间隔大于800毫秒，不退出
