@@ -13,12 +13,16 @@ import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.pinnoocle.fruitindustryoptimization.R;
 import com.pinnoocle.fruitindustryoptimization.common.BaseFragment;
 import com.pinnoocle.fruitindustryoptimization.utils.ActivityUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
+import com.youth.banner.adapter.BannerImageAdapter;
+import com.youth.banner.holder.BannerImageHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,8 +35,6 @@ import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
 public class HomeFragment extends BaseFragment implements AdapterView.OnItemClickListener {
-    @BindView(R.id.rl_title)
-    RelativeLayout rlTitle;
     @BindView(R.id.ed_search)
     TextView edSearch;
     @BindView(R.id.rl_search)
@@ -54,7 +56,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     private ArrayList<Map<String, Object>> data_list;
     private SimpleAdapter sim_adapter;
-
+    private List<Integer> bannerList = new ArrayList<>();
     private int[] icon = {R.mipmap.fruit_tree, R.mipmap.seckill, R.mipmap.group_buying, R.mipmap.vip_product};
 
     private String[] iconName = {"果树认养", "秒杀助力", "团购好货", "会员产品"};
@@ -69,9 +71,25 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         grid();
         gridView.setOnItemClickListener(this);
         initJzVideo();
+
+        bannerList.clear();
+        bannerList.add(R.drawable.banner);
+        initBanner();
     }
 
-
+    private void initBanner() {
+        banner.isAutoLoop(true)
+                .setAdapter(new BannerImageAdapter<Integer>(bannerList) {
+                    @Override
+                    public void onBindView(BannerImageHolder holder, Integer data, int position, int size) {
+                        //图片加载自己实现
+                        Glide.with(holder.itemView)
+                                .load(data)
+                                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                                .into(holder.imageView);
+                    }
+                });
+    }
 
     private void grid() {
         data_list = new ArrayList<Map<String, Object>>();
@@ -86,6 +104,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         gridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
 
     }
+
     private void initJzVideo() {
         jzVideo.setUp("http://1251316161.vod2.myqcloud.com/5f6ddb64vodsh1251316161/ece2c7df5285890812999168943/mKHguCyn6gIA.mp4"
                 , "饺子闭眼睛");
@@ -93,7 +112,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 .load("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640")
                 .into(jzVideo.posterImageView);
         jzVideo.fullscreenButton.setOnClickListener(v -> {
-            ActivityUtils.startActivity(getContext(),VideoActivity.class);
+            ActivityUtils.startActivity(getContext(), VideoActivity.class);
         });
 
     }
@@ -136,7 +155,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     public void onBackPressed() {
         if (jzVideo.backPress()) {
-            return ;
+            return;
         }
     }
 }

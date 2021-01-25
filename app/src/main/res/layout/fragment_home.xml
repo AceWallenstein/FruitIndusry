@@ -1,40 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white1"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/bg_home"/>
-    <RelativeLayout
-        android:id="@+id/rl_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="兵团优选"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
+        android:layout_height="250dp"
+        android:layout_marginTop="-50dp"
+        android:layout_marginLeft="-50dp"
+        android:layout_marginRight="-50dp"
+        android:src="@drawable/bg_home" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:layout_below="@id/rl_title"
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:srlAccentColor="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -45,15 +34,31 @@
                 android:id="@+id/rl_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="18dp"
-                android:layout_marginBottom="10dp">
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/logo" />
+
+                <ImageView
+                    android:id="@+id/classic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="10dp"
+                    android:src="@mipmap/other" />
 
                 <TextView
                     android:id="@+id/ed_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/classic"
+                    android:layout_toRightOf="@id/logo"
                     android:background="@drawable/bg_search"
                     android:drawableLeft="@mipmap/search"
                     android:drawablePadding="10dp"
@@ -66,7 +71,6 @@
                     android:textSize="14sp" />
             </RelativeLayout>
 
-
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollview"
                 android:layout_width="match_parent"
@@ -75,40 +79,39 @@
                 android:overScrollMode="never">
 
                 <LinearLayout
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
                     <com.youth.banner.Banner
                         android:id="@+id/banner"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/white" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp" />
+
                     <GridView
                         android:id="@+id/gridView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
+                        android:background="@color/white"
                         android:gravity="center"
                         android:numColumns="4" />
+
                     <LinearLayout
                         android:id="@+id/ll_marqueeView"
-                        android:background="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/white"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:padding="5dp">
 
                         <TextView
-                            android:layout_marginStart="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                          />
+                            android:layout_marginStart="5dp" />
 
                         <com.sunfusheng.marqueeview.MarqueeView
                             android:id="@+id/marqueeView"
@@ -125,6 +128,7 @@
                             app:mvTextColor="#333333"
                             app:mvTextSize="14sp" />
                     </LinearLayout>
+
                     <cn.jzvd.JzvdStd
                         android:id="@+id/jz_video"
                         android:layout_width="match_parent"
