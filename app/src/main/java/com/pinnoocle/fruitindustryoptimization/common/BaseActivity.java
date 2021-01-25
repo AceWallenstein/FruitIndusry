@@ -123,7 +123,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void initTransparent() {
-        StatusBarUtil.setColor(this.getWindow(), 0xffffffff);
+        StatusBarUtil.setColor(this.getWindow(), 0xffFAFAFA);
     }
 
     public void initRed() {
