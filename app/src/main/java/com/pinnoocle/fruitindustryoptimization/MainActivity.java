@@ -26,7 +26,6 @@ import com.pinnoocle.fruitindustryoptimization.mine.MineFragment;
 import com.pinnoocle.fruitindustryoptimization.orchard.OrchardFragment;
 import com.pinnoocle.fruitindustryoptimization.shoppingcart.ShoppingCartFragment;
 import com.pinnoocle.fruitindustryoptimization.utils.DensityUtil;
-import com.pinnoocle.fruitindustryoptimization.utils.StatusBarUtil;
 import com.pinnoocle.fruitindustryoptimization.widget.NoScrollViewPager;
 
 import java.lang.reflect.Field;
@@ -174,7 +173,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         } else {
             initTransparent();
         }
-        StatusBarUtil.StatusBarLightMode(this);
         bottomNavigationBar.selectTab(position);
     }
 
@@ -182,7 +180,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     public void onPageScrollStateChanged(int state) {
 
     }
-
 
     /**
      * 手机返回键监听

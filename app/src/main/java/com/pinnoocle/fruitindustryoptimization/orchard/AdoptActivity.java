@@ -12,6 +12,7 @@ import com.pinnoocle.fruitindustryoptimization.R;
 import com.pinnoocle.fruitindustryoptimization.adapter.AdoptAdapter;
 import com.pinnoocle.fruitindustryoptimization.common.BaseActivity;
 import com.pinnoocle.fruitindustryoptimization.utils.ActivityUtils;
+import com.pinnoocle.fruitindustryoptimization.utils.StatusBarUtil;
 import com.pinnoocle.fruitindustryoptimization.widget.CommItemDecoration;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
