@@ -1,5 +1,6 @@
 package com.pinnoocle.fruitindustryoptimization.orchard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
@@ -89,6 +91,7 @@ public class AdoptDetailsActivity extends BaseActivity {
 
         titles.add("商品详情");
         titles.add("认养收获");
+        titles.add("成长轨迹");
         for (int i = 0; i < titles.size(); i++) {
             fragments.add(new ShopDetailFragment());
         }
@@ -132,5 +135,18 @@ public class AdoptDetailsActivity extends BaseActivity {
         }
         super.onBackPressed();
 
+    }
+
+    @OnClick({R.id.iv_back, R.id.tv_adopt})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_adopt:
+                Intent intent = new Intent(this, ConfirmOrderActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

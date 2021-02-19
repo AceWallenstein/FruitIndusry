@@ -61,4 +61,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     //顶部导航栏
     implementation 'com.androidkun:XTabLayout:1.1.5'
+    //购物车加减
+    implementation 'ren.qinc.numberbutton:numberbutton:0.0.1'
 }

@@ -122,6 +122,10 @@ public class BaseActivity extends AppCompatActivity {
         mLayoutParams.y = 0;
     }
 
+    public void initWhite() {
+        StatusBarUtil.setColor(this.getWindow(), 0xffffffff);
+    }
+
     public void initTransparent() {
         StatusBarUtil.setColor(this.getWindow(), 0xffFAFAFA);
     }
