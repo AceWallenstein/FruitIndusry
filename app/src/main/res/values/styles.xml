@@ -9,6 +9,11 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+
+    </style>
+
+    <style name="VideoTheme" parent="AppTheme">
+        <item name="android:windowBackground">#000000</item>
     </style>
 
     <style name="BadgeText" parent="TextAppearance.AppCompat.Body2">

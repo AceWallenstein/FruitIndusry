@@ -21,7 +21,9 @@
         <activity android:name=".orchard.AdoptActivity" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,11 +11,15 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.pinnoocle.fruitindustryoptimization.R;
+import com.pinnoocle.fruitindustryoptimization.adapter.GoodListAdapter;
+import com.pinnoocle.fruitindustryoptimization.bean.GoodListBean;
 import com.pinnoocle.fruitindustryoptimization.common.BaseFragment;
 import com.pinnoocle.fruitindustryoptimization.utils.ActivityUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -49,10 +53,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     SmartRefreshLayout refresh;
     @BindView(R.id.marqueeView)
     MarqueeView marqueeView;
-    @BindView(R.id.ll_marqueeView)
-    LinearLayout llMarqueeView;
+    @BindView(R.id.rl_marqueeView)
+    RelativeLayout llMarqueeView;
     @BindView(R.id.jz_video)
     JzvdStd jzVideo;
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
 
     private ArrayList<Map<String, Object>> data_list;
     private SimpleAdapter sim_adapter;
@@ -75,7 +81,9 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         bannerList.clear();
         bannerList.add(R.drawable.banner);
         initBanner();
+        initGoodList();
     }
+
 
     private void initBanner() {
         banner.isAutoLoop(true)
@@ -90,6 +98,18 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                     }
                 });
     }
+
+    private void initGoodList() {
+        recycleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        GoodListAdapter adapter = new GoodListAdapter(getContext());
+        recycleView.setAdapter(adapter);
+        ArrayList<GoodListBean> list = new ArrayList<>();
+        for (int i = 0; i <12; i++) {
+            list.add(new GoodListBean("果树", "15", ""));
+        }
+        adapter.setData(list);
+    }
+
 
     private void grid() {
         data_list = new ArrayList<Map<String, Object>>();

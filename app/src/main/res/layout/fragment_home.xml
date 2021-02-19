@@ -10,8 +10,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="-50dp"
         android:layout_marginLeft="-50dp"
+        android:layout_marginTop="-50dp"
         android:layout_marginRight="-50dp"
         android:src="@drawable/bg_home" />
 
@@ -99,8 +99,8 @@
                         android:gravity="center"
                         android:numColumns="4" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_marqueeView"
+                    <RelativeLayout
+                        android:id="@+id/rl_marqueeView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -108,12 +108,16 @@
                         android:orientation="horizontal"
                         android:padding="5dp">
 
-                        <TextView
+                        <ImageView
+                            android:id="@+id/iv_special"
+                            android:src="@mipmap/special"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp" />
 
                         <com.sunfusheng.marqueeview.MarqueeView
+                            android:layout_toEndOf="@id/iv_special"
+                            android:layout_toStartOf="@id/iv_arrow"
                             android:id="@+id/marqueeView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -127,12 +131,25 @@
                             app:mvSingleLine="true"
                             app:mvTextColor="#333333"
                             app:mvTextSize="14sp" />
-                    </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/arrow_right_1"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/iv_arrow"/>
+                    </RelativeLayout>
 
                     <cn.jzvd.JzvdStd
                         android:id="@+id/jz_video"
                         android:layout_width="match_parent"
                         android:layout_height="200dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:overScrollMode="never" />
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>

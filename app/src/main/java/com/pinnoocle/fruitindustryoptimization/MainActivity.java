@@ -20,6 +20,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.fruitindustryoptimization.adapter.MainAdapter;
+import com.pinnoocle.fruitindustryoptimization.classification.ClassificationFragment;
 import com.pinnoocle.fruitindustryoptimization.common.BaseActivity;
 import com.pinnoocle.fruitindustryoptimization.home.HomeFragment;
 import com.pinnoocle.fruitindustryoptimization.mine.MineFragment;
@@ -77,6 +78,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                         .setInActiveColorResource(R.color.grey)
 
                 )
+                .addItem(new BottomNavigationItem(R.mipmap.all_select, "分类")
+                        .setInactiveIconResource(R.mipmap.all_unselect)
+                        .setActiveColorResource(R.color.light_red)
+                        .setInActiveColorResource(R.color.grey)
+                )
                 .addItem(new BottomNavigationItem(R.mipmap.tree_select, "果园")
                         .setInactiveIconResource(R.mipmap.tree_unselect)
                         .setActiveColorResource(R.color.light_red)
@@ -131,6 +137,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         mList = new ArrayList<>();
         homeFragment = new HomeFragment();
         mList.add(homeFragment);
+        mList.add(new ClassificationFragment());
         mList.add(new OrchardFragment());
         mList.add(new ShoppingCartFragment());
         mList.add(new MineFragment());
@@ -168,7 +175,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
 
     @Override
     public void onPageSelected(int position) {
-        if (position == 0 || position == 3) {
+        if (position == 0 || position == 4) {
             initRed();
         } else {
             initTransparent();
