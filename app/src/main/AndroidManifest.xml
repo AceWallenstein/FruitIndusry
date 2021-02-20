@@ -15,15 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".orchard.ECertActivity"></activity>
+        <activity android:name=".orchard.BigGiftBagActivity"></activity>
+        <activity android:name=".orchard.WateringFruitTreesActivity" />
+        <activity android:name=".orchard.ECertActivity" />
         <activity android:name=".orchard.ConfirmOrderActivity" />
         <activity android:name=".orchard.AdoptDetailsActivity" />
         <activity android:name=".orchard.AdoptActivity" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            >
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
