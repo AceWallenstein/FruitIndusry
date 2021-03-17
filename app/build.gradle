@@ -65,4 +65,15 @@ dependencies {
     implementation 'ren.qinc.numberbutton:numberbutton:0.0.1'
 
     implementation 'com.timmy.tdialog:tdialog:2.1.1'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
+    //日志打印
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 }
