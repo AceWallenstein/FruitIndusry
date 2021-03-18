@@ -50,21 +50,21 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_nick_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="老顾@微信.小程序.ap..."
                             android:textColor="@color/white"
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/tv_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:ellipsize="end"
                             android:singleLine="true"
-                            android:text="139****0255"
                             android:textColor="#99ffffff"
                             android:textSize="12sp" />
 

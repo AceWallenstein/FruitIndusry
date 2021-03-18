@@ -72,8 +72,8 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
-    //日志打印
-    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
-        exclude group: 'org.json', module: 'json'
-    }
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    implementation 'com.github.tbruyelle:rxpermissions:0.12'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.6.0'
 }

@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pinnoocle.fruitindustryoptimization">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyApp"
@@ -15,6 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".mine.ModifyPhoneActivity"></activity>
+        <activity android:name=".mine.SettingActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity android:name=".home.SearchActivity" />
         <activity
             android:name=".home.VideoActivity"

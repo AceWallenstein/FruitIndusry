@@ -4,18 +4,25 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.GsonBuilder;
-import com.ihsanbal.logging.Level;
-import com.ihsanbal.logging.LoggingInterceptor;
 import com.pedaily.yc.ycdialoglib.toast.ToastUtils;
 import com.pinnoocle.fruitindustryoptimization.BuildConfig;
 
 import java.io.IOException;
+import java.net.Proxy;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.internal.platform.Platform;
+import okhttp3.ResponseBody;
+import okhttp3.internal.http.HttpHeaders;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
+import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -61,32 +68,90 @@ public class RetrofitHelper {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("http://btys.vshop365.cn/")
-                .client(getClient().build())
+                .client(client().build())
                 //.addConverterFactory(SimpleXmlConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
 
-    private OkHttpClient.Builder getClient() {
+    public static OkHttpClient.Builder client() {
+
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
-        httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS);
-        //add log record
-        if (BuildConfig.DEBUG) {
-            //打印网络请求日志
-            LoggingInterceptor httpLoggingInterceptor = new LoggingInterceptor.Builder()
-                    .loggable(BuildConfig.DEBUG)
-                    .setLevel(Level.BASIC)
-                    .log(Platform.INFO)
-                    .request("请求")
-                    .response("响应")
-                    .build();
-            httpClientBuilder.addInterceptor(httpLoggingInterceptor);
-//            httpClientBuilder.addInterceptor(new TokenInterceptor(mContext));
-        }
+
+        httpClientBuilder.connectTimeout(30, TimeUnit.SECONDS);
+        httpClientBuilder.writeTimeout(30, TimeUnit.SECONDS);
+        httpClientBuilder.readTimeout(30, TimeUnit.SECONDS);
+        httpClientBuilder.proxy(Proxy.NO_PROXY);
+
+        httpClientBuilder.networkInterceptors()
+                .add(chain -> {
+                    Request.Builder req = chain.request().newBuilder();
+                    req.addHeader("Accept-Charset", "utf-8")
+                            .addHeader("Connection", "keep-alive")
+                            .addHeader("Accept", "*/*")
+                            .addHeader("x-version", BuildConfig.VERSION_NAME);
+
+                    Response response = chain.proceed(req.build());
+                    return response.newBuilder().build();
+                });
+        httpClientBuilder.addInterceptor(
+                new HttpLoggingInterceptor().setLevel(
+                        HttpLoggingInterceptor.Level.BODY
+                )
+        );
+
+        httpClientBuilder.addNetworkInterceptor(chain -> {
+            /*
+             * 接口字段返回 拦截器
+             * */
+            Charset UTF8 = Charset.forName("UTF-8");
+            Response response = chain.proceed(chain.request());
+            ResponseBody responseBody = response.body();
+            Log.d("response", response.toString());
+            String resultsBody = null;
+            if (HttpHeaders.hasBody(response)) {
+                BufferedSource source = responseBody.source();
+                source.request(Long.MAX_VALUE); // Buffer the entire body.
+                Buffer buffer = source.buffer();
+
+                Charset charset = UTF8;
+                MediaType contentType = responseBody.contentType();
+                if (contentType != null) {
+                    try {
+                        charset = contentType.charset(UTF8);
+                    } catch (UnsupportedCharsetException e) {
+                        e.printStackTrace();
+                    }
+                }
+                resultsBody = buffer.clone().readString(charset);
+            }
+
+//            try {
+//                if(resultsBody!=null&&!TextUtils.isEmpty(resultsBody)) {
+//                    Gson gson = new Gson();
+//                    RequestLoginBean requestLoginBean = gson.fromJson(resultsBody, RequestLoginBean.class);
+//
+//                    if (!requestLoginBean.isLogin()) {
+//                        if (FastDataUtil.getToken() != null && !TextUtils.isEmpty(FastDataUtil.getToken())) {
+//                            FastDataUtil.setToken("");
+//                            EventBus.getDefault().post(new FinishEvent());
+//                            LoginActivity.open(StaffApplication.getInstanse());
+//                        }
+//                    }
+//
+//                }
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
+
+            return response;
+        });
+
         return httpClientBuilder;
     }
-
 
     private class MyNetworkInterceptor implements Interceptor {
         @Override
